@@ -38,7 +38,7 @@ void display(int n)
             if(j == 1)
                 printf("%d\t", copy[i]);
             else
-                printf("%.2f\t", p[i][j]);
+                printf("%.1f\t", p[i][j]);
         }
         printf("\n");
     }
