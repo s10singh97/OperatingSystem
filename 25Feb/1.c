@@ -39,12 +39,12 @@ int min_b(int n, int ct)
     return min;
 }
 
-int find_min_pos_bt(int m, int n)
+int find_min_pos_bt(int m, int n, int ct)
 {
     int i;
     for(i = 0; i < n; i++)
     {
-        if(p[i][2] == m)
+        if(p[i][2] == m && p[i][1] <= ct)
             break;
     }
     return i;
@@ -106,13 +106,11 @@ int main()
         if((p[min_at][1] <= ct) && (p[min_at][2] > 0))
         {
             int min_bt;
-            min_bt = find_min_pos_bt(min_b(n, ct), n);
+            min_bt = find_min_pos_bt(min_b(n, ct), n, ct);
             ct = ct + 1;
             p[min_bt][2] -= 1;
             p[min_bt][3] = ct;
             p[min_bt][4] = p[min_bt][3] - p[min_bt][1];
-            // p[min_bt][5] = p[min_bt][4] - p[min_bt][2];
-            // p[min_bt][2] = 1000; //increasing value of covered nodes
         }
         else
         {
@@ -122,7 +120,6 @@ int main()
                 p[min_at][2] -= 1;
                 p[min_at][3] = ct;
                 p[min_at][4] = p[min_at][3] - p[min_at][1];
-                // p[min_at][5] = p[min_at][4] - p[min_at][2];
             }
         }        
     }
