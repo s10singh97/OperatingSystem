@@ -1,13 +1,14 @@
 // Semaphores
 
 #include<iostream>
-// #include<thread.h>
+#include<pthread.h>
 #include<unistd.h>
-#include <semaphore.h>
+#include<semaphore.h>
 #include<sys/types.h>
 #include<fcntl.h>
+using namespace std;
 sem_t s;
-void *fun()
+void *fun(void *arg)
 {
     sem_wait(&s);
     cout<<"Executing critical section\n";
@@ -22,6 +23,6 @@ int main(int argc, char const *argv[])
     pthread_create(&b, NULL, fun, NULL);
     pthread_join(a, NULL);
     pthread_join(b, NULL);
-    sem_destroy(s);
+    sem_destroy(&s);
     return 0;
 }
